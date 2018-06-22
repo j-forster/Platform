@@ -24,6 +24,17 @@ services:
       - "mongo:127.0.0.1"
       - "localhost:127.0.0.1"
 
+  mqtt:
+    build: ./mqtt
+    command: /bin/bash
+    tty: true
+    stdin_open: true
+    ports:
+      - "1883:1883"
+    environment:
+      - WAZIUP_API=127.0.0.1
+    network_mode: host
+
   api-server:
     build: ./api-server
     image: waziup/api-server
